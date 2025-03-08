@@ -1,21 +1,24 @@
 using UnityEngine;
-
+using System.Collections;
+using System.Collections.Generic;
 
 public class Player : MonoBehaviour {
 
     public float speed;
-    new Rigidbody2D rigidbody;
     
-    private void Awake()
+    new Rigidbody2D rigidBody;
+    
+    Vector2 = movement;
 
-    void update() {
+    private void Awake() {}
 
-        if (Input.GetAxis("Horizontal") != 0) {
-            rigidbody.velocity = new Vector2(Input.GetAxis("Horizontal") * speed * Time.deltaTime, 0);
-        }
-        else {
-            rigidbody.velocity = new Vector2(0, Input.GetAxis("Vertical") * speed * Time.deltaTime);
-        }
+    void Update() {
+        movement.x = Input.GetAxisRaw("Horizontal");
+        movement.y = Input.GetAxisRaw("Vertical");
+    }
+
+    void FixedUpdate() {
+        rigidBody.MovePosition(rigiBody.position + movement + speed * Time.fixedDeltaTime);
     }
 }
 
